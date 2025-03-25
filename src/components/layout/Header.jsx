@@ -261,7 +261,7 @@ const Header = () => {
             </MobileNavLink>
             {isAdmin && (
               <MobileNavLink to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>
-                Admin
+              Admin Dashboard
               </MobileNavLink>
             )}
           </MobileMenu>
