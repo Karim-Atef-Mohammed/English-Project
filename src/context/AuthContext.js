@@ -36,8 +36,15 @@ export const AuthProvider = ({ children }) => {
     initializing,
     error,
     isAuthenticated: !!user,
-    isAdmin: user?.email === process.env.REACT_APP_ADMIN_EMAIL,
+    isAdmin: user?.email === "admin@master.results.com",
   };
+
+  // Add this to temporarily debug
+console.log("Admin check:", {
+  envValue: process.env.REACT_APP_ADMIN_EMAIL,
+  hardcoded: "admin@master.results.com",
+  userEmail: user?.email
+});
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
