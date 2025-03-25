@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { signInWithEmail } from '../firebase/auth';
+import { createUser, signInWithEmail } from '../firebase/auth';
 import { useAuth } from '../hooks/useAuth';
 import Button from '../components/ui/Button';
 import PageTransition from '../components/animations/PageTransition';
