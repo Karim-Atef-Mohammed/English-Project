@@ -98,15 +98,15 @@ const questions = [
     questions: [
       {
         id: 'celebratory_event',
-        question: 'Imagine you are choosing a beverage for a celebratory event (e.g., a birthday party or holiday gathering). Which version of Vodafone would you select—Version A or Version B—and why? How does each version align with the mood or theme of such an event?'
+        question: 'Imagine you are choosing a mobile network provider for your new smartphone during a special occasion (e.g., graduation or starting a new job). Which version of Vodafone would you select—Version A or Version B—and why? How does each version align with the significance of such an occasion?'
       },
       {
         id: 'casual_setting',
-        question: 'Now, imagine you are selecting a beverage for a casual, everyday setting (e.g., a regular meal or snack time). Which version of We would you choose—Version A or Version B—and why? How does each version fit into this more routine context?'
+        question: 'Now, imagine you are selecting a mobile internet plan for everyday use (e.g., regular browsing or staying connected with friends). Which version of WE would you choose—Version A or Version B—and why? How does each version feel more appropriate for your daily connectivity needs?'
       },
       {
         id: 'brand_connection',
-        question: 'If a brand you regularly use were to significantly change a key visual element (like its logo or packaging), how might that affect your connection to it? Reflect on the versions of Vodafone and We you\'ve seen.'
+        question: 'If a telecom provider you regularly use were to significantly change a key visual element (like its logo or branding colors), how might that affect your loyalty to it? Reflect on the versions of Vodafone and WE you\'ve seen.'
       }
     ]
   },
