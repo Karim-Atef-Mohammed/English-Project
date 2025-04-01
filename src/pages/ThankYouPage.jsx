@@ -115,8 +115,8 @@ const ThankYouPage = () => {
   }, [resetSurvey]);
   
   const shareURL = window.location.origin;
-  const shareText = "I just completed the Chromatic Shift brand color perception survey! Check it out:";
-  
+  const shareText = "I just completed the Chromatic Shift brand color perception survey about Vodafone and WE! Check it out:";
+    
   const handleShare = (platform) => {
     let shareUrl;
     

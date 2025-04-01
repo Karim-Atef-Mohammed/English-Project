@@ -334,61 +334,62 @@ const ResponseDetailsModal = ({ response, isOpen, onClose }) => {
     return key
       .replace(/_/g, ' ')
       .replace(/\b\w/g, l => l.toUpperCase())
-      .replace(/Coca Cola/g, 'Coca-Cola')
+      .replace(/Vodafone/g, 'Vodafone')  // Updated from Vodafone
+      .replace(/We/g, 'WE')  // Updated from We
       .replace(/(\w)(\s+)([AB])(\s+)(\d+)/g, '$1 $3-$5');
   };
   
   // Update the renderValue function in your ResponseDetailsModal component
-const renderValue = (value) => {
-  if (value === null || value === undefined) return '-';
-  if (typeof value === 'boolean') return value ? 'Yes' : 'No';
-  
-  // Handle object data (like your Pepsi/Coca-Cola ratings)
-  if (typeof value === 'object' && value !== null) {
-    // For brand rating objects
-    if (Object.keys(value).some(k => k.includes('pepsi_') || k.includes('coca_cola_'))) {
-      // Sort the keys for consistent ordering
-      const sortedEntries = Object.entries(value).sort((a, b) => a[0].localeCompare(b[0]));
-      
-      return (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
-          {sortedEntries.map(([key, rating]) => {
-            // Format the key nicely (e.g., "pepsi_b_4" -> "B-4")
-            const formattedKey = key
-              .replace(/pepsi_|coca_cola_/g, '')
+  const renderValue = (value) => {
+    if (value === null || value === undefined) return '-';
+    if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+    
+    // Handle object data (like your We/Vodafone ratings)
+    if (typeof value === 'object' && value !== null) {
+      // For brand rating objects
+      if (Object.keys(value).some(k => k.includes('we_') || k.includes('vodafone_'))) {
+        // Sort the keys for consistent ordering
+        const sortedEntries = Object.entries(value).sort((a, b) => a[0].localeCompare(b[0]));
+        
+        return (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+            {sortedEntries.map(([key, rating]) => {
+              // Format the key nicely (e.g., "We_b_4" -> "B-4")
+              const formattedKey = key
+              .replace(/we_|vodafone_/g, '')
               .replace(/(\w)_(\d+)/g, '$1-$2')
-              .toUpperCase();
-              
-            return (
-              <div key={key} style={{ 
-                display: 'flex',
-                alignItems: 'center',
-                background: 'rgba(255,255,255,0.1)', 
-                padding: '8px',
-                borderRadius: '4px'
-              }}>
-                <div style={{ width: '40px', fontWeight: 'bold' }}>{formattedKey}</div>
-                <div style={{ 
-                  flex: 1,
+                .toUpperCase();
+                
+              return (
+                <div key={key} style={{ 
                   display: 'flex',
-                  height: '8px',
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: '4px',
-                  overflow: 'hidden'
+                  alignItems: 'center',
+                  background: 'rgba(255,255,255,0.1)', 
+                  padding: '8px',
+                  borderRadius: '4px'
                 }}>
-                  <div style={{
-                    width: `${(rating / 7) * 100}%`,
-                    background: key.includes('pepsi') ? '#0066cc' : '#ff0000',
-                    height: '100%'
-                  }}/>
+                  <div style={{ width: '40px', fontWeight: 'bold' }}>{formattedKey}</div>
+                  <div style={{ 
+                    flex: 1,
+                    display: 'flex',
+                    height: '8px',
+                    background: 'rgba(255,255,255,0.1)',
+                    borderRadius: '4px',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      width: `${(rating / 7) * 100}%`,
+                      background: key.includes('we') ? '#ffba00' : '#e60000',
+                      height: '100%'
+                    }}/>
+                  </div>
+                  <div style={{ marginLeft: '8px', width: '20px', textAlign: 'right' }}>{rating}</div>
                 </div>
-                <div style={{ marginLeft: '8px', width: '20px', textAlign: 'right' }}>{rating}</div>
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
+              );
+            })}
+          </div>
+        );
+      }
     
     // For other objects
     try {
@@ -413,21 +414,18 @@ const renderValue = (value) => {
 };
 
   // Extract brand-related fields
-  const cocaColaFields = {};
-  const pepsiFields = {};
+  const vodafoneFields = {};
+  const weFields = {};
   
   // Loop through response properties to find brand ratings
   Object.keys(response).forEach(key => {
-    if (key.includes('coca_cola_')) {
-      cocaColaFields[key] = response[key];
-    } else if (key.includes('pepsi_')) {
-      pepsiFields[key] = response[key];
+    if (key.includes('vodafone_')) {
+      vodafoneFields[key] = response[key];
+    } else if (key.includes('we_')) {
+      weFields[key] = response[key];
     }
   });
   
-  // For debugging - check if we have brand data
-  console.log('Coca-Cola fields:', cocaColaFields);
-  console.log('Pepsi fields:', pepsiFields);
   
   return (
     <ModalOverlay onClick={onClose}>
@@ -469,13 +467,13 @@ const renderValue = (value) => {
             </ResponseSection>
           )}
           
-          {/* Coca-Cola Ratings Section */}
-          {Object.keys(cocaColaFields).length > 0 && (
+          {/* Vodafone Ratings Section */}
+          {Object.keys(vodafoneFields).length > 0 && (
             <ResponseSection>
               <SectionTitle>
-                <span role="img" aria-label="coca-cola">🔴</span> Coca-Cola Ratings
+               <span role="img" aria-label="vodafone">🔴</span> Vodafone Ratings
               </SectionTitle>
-              {Object.entries(cocaColaFields).map(([key, value]) => (
+              {Object.entries(vodafoneFields).map(([key, value]) => (
                 <DetailItem key={key}>
                   <DetailLabel>{formatLabel(key)}:</DetailLabel>
                   <DetailValue>{renderValue(value)}</DetailValue>
@@ -484,13 +482,13 @@ const renderValue = (value) => {
             </ResponseSection>
           )}
           
-          {/* Pepsi Ratings Section */}
-          {Object.keys(pepsiFields).length > 0 && (
+          {/* We Ratings Section */}
+          {Object.keys(weFields).length > 0 && (
             <ResponseSection>
               <SectionTitle>
-                <span role="img" aria-label="pepsi">🔵</span> Pepsi Ratings
+              <span role="img" aria-label="we">🟡</span> WE Ratings
               </SectionTitle>
-              {Object.entries(pepsiFields).map(([key, value]) => (
+              {Object.entries(weFields).map(([key, value]) => (
                 <DetailItem key={key}>
                   <DetailLabel>{formatLabel(key)}:</DetailLabel>
                   <DetailValue>{renderValue(value)}</DetailValue>
@@ -521,8 +519,8 @@ const renderValue = (value) => {
             </SectionTitle>
             {Object.entries(response)
               .filter(([key]) => 
-                !key.includes('coca_cola_') && 
-                !key.includes('pepsi_') && 
+                !key.includes('vodafone_') && 
+                !key.includes('we_') && 
                 key !== 'id' && 
                 key !== 'submittedAt' &&
                 key !== 'demographics' &&
@@ -610,59 +608,59 @@ function processAnalyticsData(responses) {
     ],
   };
 
-  // Brand ratings data - improved calculation
-  const pepsiRatings = {};
-  const cokeRatings = {};
+  // `Brand` ratings data - improved calculation
+  const weRatings = {};
+  const vodafoneRatings = {};
 
-  // Find all Pepsi and Coca-Cola rating fields
+  // Find all We and Vodafone rating fields
   responses.forEach(response => {
     Object.keys(response).forEach(key => {
       let brand, variant;
       
-      if (key.startsWith('pepsi_')) {
-        brand = 'pepsi';
-        variant = key.replace('pepsi_', '');
-      } else if (key.startsWith('coca_cola_')) {
-        brand = 'coca_cola';
-        variant = key.replace('coca_cola_', '');
+      if (key.startsWith('we_')) {
+        brand = 'we';
+        variant = key.replace('we_', '');
+      } else if (key.startsWith('vodafone_')) {
+        brand = 'vodafone';
+        variant = key.replace('vodafone_', '');
       }
       
       if (brand && variant) {
         // Initialize if needed
-        if (brand === 'pepsi' && !pepsiRatings[variant]) {
-          pepsiRatings[variant] = { sum: 0, count: 0 };
-        } else if (brand === 'coca_cola' && !cokeRatings[variant]) {
-          cokeRatings[variant] = { sum: 0, count: 0 };
-        }
+        // Change to:
+          if (brand === 'we' && !weRatings[variant]) {
+            weRatings[variant] = { sum: 0, count: 0 };
+          } else if (brand === 'vodafone' && !vodafoneRatings[variant]) {
+            vodafoneRatings[variant] = { sum: 0, count: 0 };
+          }
         
         // Add this rating to the sum if it's a valid number
         const rating = Number(response[key]);
         if (!isNaN(rating)) {
-          if (brand === 'pepsi') {
-            pepsiRatings[variant].sum += rating;
-            pepsiRatings[variant].count++;
-          } else {
-            cokeRatings[variant].sum += rating;
-            cokeRatings[variant].count++;
+          if (brand === 'we') {
+            weRatings[variant].sum += rating;
+            weRatings[variant].count++;
+          } else if (brand === 'vodafone') {
+            vodafoneRatings[variant].sum += rating;
+            vodafoneRatings[variant].count++;
           }
         }
       }
     });
   });
 
-  // Calculate averages
-  Object.keys(pepsiRatings).forEach(variant => {
-    const { sum, count } = pepsiRatings[variant];
-    pepsiRatings[variant] = count > 0 ? sum / count : 0;
+  Object.keys(weRatings).forEach(variant => {
+    const { sum, count } = weRatings[variant];
+    weRatings[variant] = count > 0 ? sum / count : 0;
   });
 
-  Object.keys(cokeRatings).forEach(variant => {
-    const { sum, count } = cokeRatings[variant];
-    cokeRatings[variant] = count > 0 ? sum / count : 0;
+  Object.keys(vodafoneRatings).forEach(variant => {
+    const { sum, count } = vodafoneRatings[variant];
+    vodafoneRatings[variant] = count > 0 ? sum / count : 0;
   });
 
   // Format variant labels for readability
-  const allVariants = [...new Set([...Object.keys(pepsiRatings), ...Object.keys(cokeRatings)])];
+  const allVariants = [...new Set([...Object.keys(weRatings), ...Object.keys(vodafoneRatings)])];
   const variantLabels = allVariants.map(v => v.toUpperCase().replace(/_/g, '-'));
 
   // Create dataset with consistent variants
@@ -670,20 +668,20 @@ function processAnalyticsData(responses) {
     labels: variantLabels,
     datasets: [
       {
-        label: 'Coca-Cola',
+        label: 'Vodafone',
         data: variantLabels.map(label => {
           const variant = label.toLowerCase().replace(/-/g, '_');
-          return cokeRatings[variant] || 0;
+          return vodafoneRatings[variant] || 0;
         }),
         backgroundColor: 'rgba(255, 99, 132, 0.6)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
       },
       {
-        label: 'Pepsi',
+        label: 'WE',
         data: variantLabels.map(label => {
           const variant = label.toLowerCase().replace(/-/g, '_');
-          return pepsiRatings[variant] || 0;
+          return weRatings[variant] || 0;
         }),
         backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderColor: 'rgba(54, 162, 235, 1)',
@@ -695,19 +693,19 @@ function processAnalyticsData(responses) {
   // Brand perception radar chart - calculate actual data
   const perceptionDimensions = ['taste', 'value', 'quality', 'innovation', 'branding', 'trustworthiness'];
   const perceptionData = {
-    'coca_cola': Array(perceptionDimensions.length).fill(0),
-    'pepsi': Array(perceptionDimensions.length).fill(0)
+    'vodafone': Array(perceptionDimensions.length).fill(0),
+    'we': Array(perceptionDimensions.length).fill(0)
   };
   const perceptionCounts = {
-    'coca_cola': Array(perceptionDimensions.length).fill(0),
-    'pepsi': Array(perceptionDimensions.length).fill(0)
+    'vodafone': Array(perceptionDimensions.length).fill(0),
+    'we': Array(perceptionDimensions.length).fill(0)
   };
 
   // Collect perception data
   responses.forEach(response => {
     perceptionDimensions.forEach((dimension, index) => {
-      // Look for fields like "coca_cola_taste" or "pepsi_quality"
-      ['coca_cola', 'pepsi'].forEach(brand => {
+      // Look for fields like "Vodafone_quality" or "We_quality"
+      ['vodafone', 'we'].forEach(brand => {
         const fieldName = `${brand}_${dimension}`;
         if (response[fieldName] !== undefined) {
           const rating = Number(response[fieldName]);
@@ -722,14 +720,14 @@ function processAnalyticsData(responses) {
 
   // Calculate averages
   const cokePerception = perceptionDimensions.map((dim, i) => 
-    perceptionCounts['coca_cola'][i] > 0 
-      ? perceptionData['coca_cola'][i] / perceptionCounts['coca_cola'][i] 
+    perceptionCounts['vodafone'][i] > 0 
+    ? perceptionData['vodafone'][i] / perceptionCounts['vodafone'][i] 
       : 0
   );
 
-  const pepsiPerception = perceptionDimensions.map((dim, i) => 
-    perceptionCounts['pepsi'][i] > 0 
-      ? perceptionData['pepsi'][i] / perceptionCounts['pepsi'][i] 
+  const wePerception = perceptionDimensions.map((dim, i) => 
+    perceptionCounts['we'][i] > 0 
+    ? perceptionData['we'][i] / perceptionCounts['we'][i] 
       : 0
   );
 
@@ -738,7 +736,7 @@ function processAnalyticsData(responses) {
     labels: perceptionDimensions.map(dim => dim.charAt(0).toUpperCase() + dim.slice(1)),
     datasets: [
       {
-        label: 'Coca-Cola',
+        label: 'Vodafone',
         data: cokePerception.some(val => val > 0) ? cokePerception : [5.2, 4.8, 5.5, 4.7, 6.1, 5.8],
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
@@ -748,8 +746,8 @@ function processAnalyticsData(responses) {
         pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
       },
       {
-        label: 'Pepsi',
-        data: pepsiPerception.some(val => val > 0) ? pepsiPerception : [5.4, 5.1, 5.2, 5.3, 5.7, 5.2],
+        label: 'We',
+        data: wePerception.some(val => val > 0) ? wePerception : [5.4, 5.1, 5.2, 5.3, 5.7, 5.2],
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         pointBackgroundColor: 'rgba(54, 162, 235, 1)',
@@ -1008,7 +1006,6 @@ const AdminPage = () => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
     
-    console.log(`Exported ${rows.length} records with ${headers.length} fields`);
   };
 
   
@@ -1384,24 +1381,24 @@ function processAnalyticsData(responses) {
   };
 
   // Brand ratings data
-  const pepsiRatings = {};
-  const cokeRatings = {};
+  const weRatings = {};
+  const vodafoneRatings = {};
   
   // Check first response for brand rating fields
   const firstResponse = responses[0] || {};
   const brandFields = Object.keys(firstResponse)
-    .filter(key => key.includes('pepsi_') || key.includes('coca_cola_'));
+    .filter(key => key.includes('we_') || key.includes('vodafone_'));
   
   // Group brand fields by variant
   brandFields.forEach(field => {
     let brand, variant;
     
-    if (field.includes('pepsi_')) {
-      brand = 'pepsi';
-      variant = field.replace('pepsi_', '');
-    } else if (field.includes('coca_cola_')) {
-      brand = 'coca_cola';
-      variant = field.replace('coca_cola_', '');
+    if (field.includes('we_')) {
+      brand = 'we';
+      variant = field.replace('we_', '');
+    } else if (field.includes('vodafone_')) {
+      brand = 'vodafone';
+      variant = field.replace('vodafone_', '');
     }
     
     if (brand && variant) {
@@ -1418,16 +1415,16 @@ function processAnalyticsData(responses) {
       
       const avg = count > 0 ? sum / count : 0;
       
-      if (brand === 'pepsi') {
-        pepsiRatings[variant] = avg;
+      if (brand === 'we') {
+        weRatings[variant] = avg;
       } else {
-        cokeRatings[variant] = avg;
+        vodafoneRatings[variant] = avg;
       }
     }
   });
   
   // Format variant labels for readability
-  const variantLabels = Object.keys(pepsiRatings).map(v => 
+  const variantLabels = Object.keys(weRatings).map(v => 
     v.toUpperCase().replace(/_/g, '-')
   );
   
@@ -1435,15 +1432,15 @@ function processAnalyticsData(responses) {
     labels: variantLabels,
     datasets: [
       {
-        label: 'Coca-Cola',
-        data: Object.values(cokeRatings),
+        label: 'Vodafone',
+        data: Object.values(vodafoneRatings),
         backgroundColor: 'rgba(255, 99, 132, 0.6)',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
       },
       {
-        label: 'Pepsi',
-        data: Object.values(pepsiRatings),
+        label: 'We',
+        data: Object.values(weRatings),
         backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
@@ -1456,7 +1453,7 @@ function processAnalyticsData(responses) {
     labels: ['Taste', 'Value', 'Quality', 'Innovation', 'Branding', 'Trustworthiness'],
     datasets: [
       {
-        label: 'Coca-Cola',
+        label: 'Vodafone',
         data: [5.2, 4.8, 5.5, 4.7, 6.1, 5.8], // Replace with actual average values
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgba(255, 99, 132, 1)',
@@ -1466,7 +1463,7 @@ function processAnalyticsData(responses) {
         pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
       },
       {
-        label: 'Pepsi',
+        label: 'We',
         data: [5.4, 5.1, 5.2, 5.3, 5.7, 5.2], // Replace with actual average values
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',

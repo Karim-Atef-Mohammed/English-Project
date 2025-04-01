@@ -8,24 +8,24 @@ const questions = [
     noResponse: true
   },
   {
-    id: 'coca_cola_comparison',
+    id: 'vodafone_comparison',
     type: 'brandComparison',
     title: 'Brand Comparison One',
-    shortTitle: 'Coca-Cola',
-    description: 'Compare these Coca-Cola brand versions with their original and altered color schemes.',
+    shortTitle: 'Vodafone',
+    description: 'Compare these Vodafone brand versions with their original and altered color schemes.',
     brandPairs: [
       {
-        id: 'coca_cola',
-        brandName: 'Coca-Cola',
+        id: 'vodafone',
+        brandName: 'Vodafone',
         brandType: 'Beverage',
         originalColor: '#FF0000', // Red
         newColor: '#0000FF', // Blue
-        originalImageUrl: '/assets/images/coca_cola_original.png',
-        newImageUrl: '/assets/images/coca_cola_altered.png',
+        originalImageUrl: '/assets/images/vodafone_original.jpeg',
+        newImageUrl: '/assets/images/vodafone_altered.jpeg',
         versionA: 'Original Red',
         versionB: 'Blue Version',
         statements: [
-          'This version is easily recognizable as Coca-Cola.',
+          'This version is easily recognizable as Vodafone.',
           'This version is visually appealing.',
           'This version conveys trustworthiness.',
           'This version evokes positive emotions.',
@@ -36,24 +36,24 @@ const questions = [
     ]
   },
   {
-    id: 'pepsi_comparison',
+    id: 'we_comparison',
     type: 'brandComparison',
     title: 'Brand Comparison Two',
-    shortTitle: 'Pepsi',
-    description: 'Compare these Pepsi brand versions with their original and altered color schemes.',
+    shortTitle: 'We',
+    description: 'Compare these We brand versions with their original and altered color schemes.',
     brandPairs: [
       {
-        id: 'pepsi',
-        brandName: 'Pepsi',
+        id: 'we',
+        brandName: 'We',
         brandType: 'Beverage',
         originalColor: '#0000FF', // Blue
         newColor: '#FF0000', // Red
-        originalImageUrl: '/assets/images/pepsi_original.png',
-        newImageUrl: '/assets/images/pepsi_altered.png',
+        originalImageUrl: '/assets/images/we_original.jpeg',
+        newImageUrl: '/assets/images/we_altered.jpeg',
         versionA: 'Original Blue',
         versionB: 'Red Version',
         statements: [
-          'This version is easily recognizable as Pepsi.',
+          'This version is easily recognizable as We.',
           'This version is visually appealing.',
           'This version conveys trustworthiness.',
           'This version evokes positive emotions.',
@@ -71,20 +71,20 @@ const questions = [
     description: 'Please rate your agreement with the following statements about each brand version.',
     statements: [
       {
-        id: 'coca_cola_a_identity',
-        statement: 'This version of Coca-Cola (Version A) effectively communicates the brand\'s unique identity.'
+        id: 'vodafone_a_identity',
+        statement: 'This version of Vodafone (Version A) effectively communicates the brand\'s unique identity.'
       },
       {
-        id: 'coca_cola_b_quality',
-        statement: 'This version of Coca-Cola (Version B) feels consistent with my expectations of the brand\'s quality.'
+        id: 'vodafone_b_quality',
+        statement: 'This version of Vodafone (Version B) feels consistent with my expectations of the brand\'s quality.'
       },
       {
-        id: 'pepsi_a_interest',
-        statement: 'This version of Pepsi (Version A) enhances my interest in engaging with the brand.'
+        id: 'we_a_interest',
+        statement: 'This version of We (Version A) enhances my interest in engaging with the brand.'
       },
       {
-        id: 'pepsi_b_identity',
-        statement: 'This version of Pepsi (Version B) effectively communicates the brand\'s unique identity.'
+        id: 'we_b_identity',
+        statement: 'This version of We (Version B) effectively communicates the brand\'s unique identity.'
       }
     ],
     scale: [1, 2, 3, 4, 5, 6, 7]
@@ -98,15 +98,15 @@ const questions = [
     questions: [
       {
         id: 'celebratory_event',
-        question: 'Imagine you are choosing a beverage for a celebratory event (e.g., a birthday party or holiday gathering). Which version of Coca-Cola would you select—Version A or Version B—and why? How does each version align with the mood or theme of such an event?'
+        question: 'Imagine you are choosing a beverage for a celebratory event (e.g., a birthday party or holiday gathering). Which version of Vodafone would you select—Version A or Version B—and why? How does each version align with the mood or theme of such an event?'
       },
       {
         id: 'casual_setting',
-        question: 'Now, imagine you are selecting a beverage for a casual, everyday setting (e.g., a regular meal or snack time). Which version of Pepsi would you choose—Version A or Version B—and why? How does each version fit into this more routine context?'
+        question: 'Now, imagine you are selecting a beverage for a casual, everyday setting (e.g., a regular meal or snack time). Which version of We would you choose—Version A or Version B—and why? How does each version fit into this more routine context?'
       },
       {
         id: 'brand_connection',
-        question: 'If a brand you regularly use were to significantly change a key visual element (like its logo or packaging), how might that affect your connection to it? Reflect on the versions of Coca-Cola and Pepsi you\'ve seen.'
+        question: 'If a brand you regularly use were to significantly change a key visual element (like its logo or packaging), how might that affect your connection to it? Reflect on the versions of Vodafone and We you\'ve seen.'
       }
     ]
   },
@@ -134,7 +134,7 @@ const questions = [
       },
       {
         id: 'brand_familiarity',
-        question: 'How familiar are you with Coca-Cola and Pepsi as brands?',
+        question: 'How familiar are you with Vodafone and We as brands?',
         options: ['Not at all familiar', 'Somewhat familiar', 'Very familiar', 'Extremely familiar (e.g., regular consumer)']
       }
     ]
