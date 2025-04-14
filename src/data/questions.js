@@ -58,65 +58,81 @@ const questions = [
     ]
   },
   
-  // Keep the Vodafone comparison section
-  {
-    id: 'vodafone_comparison',
-    type: 'brandComparison',
-    title: 'Brand Comparison One',
-    shortTitle: 'Vodafone',
-    description: 'Compare these Vodafone brand versions with their original and altered color schemes.',
-    brandPairs: [
-      {
-        id: 'vodafone',
-        brandName: 'Vodafone',
-        brandType: 'Beverage',
-        originalColor: '#FF0000', // Red
-        newColor: '#0000FF', // Blue
-        originalImageUrl: '/assets/images/vodafone_original.jpeg',
-        newImageUrl: '/assets/images/vodafone_altered.jpeg',
-        versionA: 'Original Red',
-        versionB: 'Blue Version',
-        statements: [
-          'This version is easily recognizable as Vodafone.',
-          'This version is visually appealing.',
-          'This version conveys trustworthiness.',
-          'This version evokes positive emotions.',
-          'This version suggests high quality.',
-          'I would be likely to purchase this version.'
-        ]
-      }
-    ]
+  /* ---------- BRAND‑COMPARISON ONE ---------- */
+{
+  id: 'vodafone_comparison',
+  type: 'brandComparison',
+  title: 'Brand Comparison One',
+  shortTitle: 'Vodafone',
+  description:
+    'Compare these Vodafone logo versions. For each statement, rate Version A and Version B on a single 1‑to‑7 scale (1 = Strongly disagree … 7 = Strongly agree).',
+  /* 1–7 key for the UI */
+  scale: {
+    min: 1,
+    max: 7,
+    minLabel: 'Strongly disagree',
+    maxLabel: 'Strongly agree'
   },
-  
-  // Keep the WE comparison section
-  {
-    id: 'we_comparison',
-    type: 'brandComparison',
-    title: 'Brand Comparison Two',
-    shortTitle: 'We',
-    description: 'Compare these We brand versions with their original and altered color schemes.',
-    brandPairs: [
-      {
-        id: 'we',
-        brandName: 'We',
-        brandType: 'Beverage',
-        originalColor: '#0000FF', // Blue
-        newColor: '#FF0000', // Red
-        originalImageUrl: '/assets/images/we_original.jpeg',
-        newImageUrl: '/assets/images/we_altered.jpeg',
-        versionA: 'Original Blue',
-        versionB: 'Red Version',
-        statements: [
-          'This version is easily recognizable as We.',
-          'This version is visually appealing.',
-          'This version conveys trustworthiness.',
-          'This version evokes positive emotions.',
-          'This version suggests high quality.',
-          'I would be likely to purchase this version.'
-        ]
-      }
-    ]
+  brandPairs: [
+    {
+      id: 'vodafone',
+      brandName: 'Vodafone',
+      brandType: 'Telecom',
+      originalColor: '#FF0000',          // Red
+      newColor: '#0000FF',               // Blue
+      originalImageUrl: '/assets/images/vodafone_original.jpeg',
+      newImageUrl: '/assets/images/vodafone_altered.jpeg',
+      versionA: 'Original Red',
+      versionB: 'Blue Version',
+      statements: [
+        'This version is easily recognisable as Vodafone.',
+        'This version is visually appealing.',
+        'This version conveys trustworthiness.',
+        'This version evokes positive emotions.',
+        'This version suggests high quality.',
+        'I would be likely to purchase this version.'
+      ]
+    }
+  ]
+},
+
+/* ---------- BRAND‑COMPARISON TWO ---------- */
+{
+  id: 'we_comparison',
+  type: 'brandComparison',
+  title: 'Brand Comparison Two',
+  shortTitle: 'We',
+  description:
+    'Compare these We logo versions. For each statement, rate Version A and Version B on the same 1‑to‑7 scale (1 = Strongly disagree … 7 = Strongly agree).',
+  scale: {
+    min: 1,
+    max: 7,
+    minLabel: 'Strongly disagree',
+    maxLabel: 'Strongly agree'
   },
+  brandPairs: [
+    {
+      id: 'we',
+      brandName: 'We',
+      brandType: 'Telecom',
+      originalColor: '#0000FF',          // Blue
+      newColor: '#FF0000',               // Red
+      originalImageUrl: '/assets/images/we_original.jpeg',
+      newImageUrl: '/assets/images/we_altered.jpeg',
+      versionA: 'Original Blue',
+      versionB: 'Red Version',
+      statements: [
+        'This version is easily recognisable as We.',
+        'This version is visually appealing.',
+        'This version conveys trustworthiness.',
+        'This version evokes positive emotions.',
+        'This version suggests high quality.',
+        'I would be likely to purchase this version.'
+      ]
+    }
+  ]
+},
+
   
   // Only keep the first open-ended question
   {
