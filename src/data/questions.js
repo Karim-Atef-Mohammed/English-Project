@@ -2,9 +2,9 @@ const questions = [
   {
     id: 'intro',
     type: 'information',
-    title: 'Chromatic Shift in Brand Identity: A Psychovisual Study of Perceptual Impact',
+    title: 'Survey on Brand Logo Impressions',
     shortTitle: 'Introduction',
-    description: 'This survey examines how changes in brand colors affect consumer perception. You will be shown different versions of familiar brands and asked for your reactions and ratings from 1 to 7.',
+    description: 'In this short survey you will see examples of well‑known brands displayed in different colour styles. We would like to know your impressions. Your responses are anonymous and there are no right or wrong answers, and the survey should take about three minutes to complete.',
     noResponse: true
   },
   
