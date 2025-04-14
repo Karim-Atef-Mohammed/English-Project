@@ -1,12 +1,64 @@
 const questions = [
   {
-    id: 'intro', // This ID is used to hide the Next Question button
+    id: 'intro',
     type: 'information',
     title: 'Chromatic Shift in Brand Identity: A Psychovisual Study of Perceptual Impact',
     shortTitle: 'Introduction',
-    description: 'This survey examines how changes in brand colors affect consumer perception. You will be shown different versions of familiar beverage brands and asked for your reactions and giving ratings from 1 to 7.',
+    description: 'This survey examines how changes in brand colors affect consumer perception. You will be shown different versions of familiar brands and asked for your reactions and ratings from 1 to 7.',
     noResponse: true
   },
+  
+  // First MCQ about color and trust
+  {
+    id: 'color_trust',
+    type: 'multipleChoice',
+    title: 'Color Associations',
+    shortTitle: 'Color Trust',
+    description: 'Please select the option that best matches your perception.',
+    questions: [
+      {
+        id: 'trust_color',
+        question: 'Which color do you associate most with trust and reliability?',
+        options: ['Blue', 'Green', 'Red', 'Black', 'White']
+      }
+    ]
+  },
+  
+  // Second MCQ about product choice influences
+  {
+    id: 'product_influence',
+    type: 'multipleChoice',
+    title: 'Product Choice Factors',
+    shortTitle: 'Influences',
+    description: 'Please tell us what factors influence your purchasing decisions.',
+    questions: [
+      {
+        id: 'influence_factors',
+        question: 'Which of these influences you the most when choosing a product? (Select all that apply)',
+        options: ['Color', 'Logo design', 'Product packaging', 'Advertisements (Posters, Social Media Ads, TV Ads)', 'Font style and text design'],
+        multiSelect: true
+      }
+    ],
+    multiSelect: true  // Make sure this is added at both levels if needed
+  },  
+  
+  // Third MCQ about advertisement preferences
+  {
+    id: 'ad_preference',
+    type: 'multipleChoice',
+    title: 'Advertisement Preferences',
+    shortTitle: 'Ad Types',
+    description: 'Please tell us about what advertising styles appeal to you.',
+    questions: [
+      {
+        id: 'ad_attention',
+        question: 'What type of advertisement is most likely to grab your attention?',
+        options: ['Bright and colorful designs', 'Minimalist and simple designs', 'Dark and elegant themes', 'Animated or moving ads']
+      }
+    ]
+  },
+  
+  // Keep the Vodafone comparison section
   {
     id: 'vodafone_comparison',
     type: 'brandComparison',
@@ -35,6 +87,8 @@ const questions = [
       }
     ]
   },
+  
+  // Keep the WE comparison section
   {
     id: 'we_comparison',
     type: 'brandComparison',
@@ -63,53 +117,23 @@ const questions = [
       }
     ]
   },
-  {
-    id: 'brand_rating',
-    type: 'likert',
-    title: 'Brand Version Ratings',
-    shortTitle: 'Ratings',
-    description: 'Please rate your agreement with the following statements about each brand version.',
-    statements: [
-      {
-        id: 'vodafone_a_identity',
-        statement: 'This version of Vodafone (Version A) effectively communicates the brand\'s unique identity.'
-      },
-      {
-        id: 'vodafone_b_quality',
-        statement: 'This version of Vodafone (Version B) feels consistent with my expectations of the brand\'s quality.'
-      },
-      {
-        id: 'we_a_interest',
-        statement: 'This version of We (Version A) enhances my interest in engaging with the brand.'
-      },
-      {
-        id: 'we_b_identity',
-        statement: 'This version of We (Version B) effectively communicates the brand\'s unique identity.'
-      }
-    ],
-    scale: [1, 2, 3, 4, 5, 6, 7]
-  },
+  
+  // Only keep the first open-ended question
   {
     id: 'open_ended_responses',
     type: 'openEndedQuestions',
     title: 'Your Thoughts',
     shortTitle: 'Feedback',
-    description: 'Please share your thoughts on the following scenarios.',
+    description: 'Please share your thoughts on the following scenario.',
     questions: [
       {
         id: 'celebratory_event',
-        question: 'Imagine you are choosing a beverage for a celebratory event (e.g., a birthday party or holiday gathering). Which version of Vodafone would you select—Version A or Version B—and why? How does each version align with the mood or theme of such an event?'
-      },
-      {
-        id: 'casual_setting',
-        question: 'Now, imagine you are selecting a beverage for a casual, everyday setting (e.g., a regular meal or snack time). Which version of We would you choose—Version A or Version B—and why? How does each version fit into this more routine context?'
-      },
-      {
-        id: 'brand_connection',
-        question: 'If a brand you regularly use were to significantly change a key visual element (like its logo or packaging), how might that affect your connection to it? Reflect on the versions of Vodafone and We you\'ve seen.'
+        question: 'Imagine you are choosing a mobile network provider for your new smartphone during a special occasion (e.g., graduation or starting a new job). Which version of Vodafone would you select—Version A or Version B—and why? How does each version align with the significance of such an occasion?'
       }
     ]
   },
+  
+  // Keep demographics as the last section
   {
     id: 'demographics',
     type: 'multipleChoice',

@@ -14,7 +14,7 @@ const HeaderContainer = styled(motion.header)`
   padding: 1rem 2rem;
   transition: background 0.3s ease;
   backdrop-filter: ${props => props["data-scrolled"] === "true" ? 'blur(10px)' : 'none'};
-  background: ${props => props["data-scrolled"] === "true" ? 'rgba(15, 15, 22, 0.9)' : 'transparent'};
+  background: ${props => props["data-scrolled"] === "true" ? 'rgba(0, 0, 0, 0.2)' : 'transparent'};
   border-bottom: ${props => props["data-scrolled"] === "true" ? '1px solid rgba(255, 255, 255, 0.05)' : 'none'};
 `;
 
@@ -117,8 +117,6 @@ const MobileMenu = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 15, 22, 0.98);
-  backdrop-filter: blur(10px);
   z-index: 100;
   display: flex;
   flex-direction: column;

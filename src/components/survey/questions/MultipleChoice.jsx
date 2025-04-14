@@ -53,6 +53,27 @@ const OptionButton = styled(motion.button)`
     background: rgba(12, 135, 232, 0.1);
     border-color: rgba(12, 135, 232, 0.3);
   }
+
+    display: flex;
+  align-items: center;
+  
+  .checkbox, .radio {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 18px;
+  }
+  
+  .checkbox {
+    border-radius: 3px;
+  }
+  
+  .radio {
+    border-radius: 50%;
+  }
 `;
 
 const TextInputContainer = styled.div`
@@ -84,6 +105,8 @@ const ErrorMessage = styled.div`
   color: #ff6b6b;
 `;
 
+
+
 const MultipleChoice = ({ question, value = {}, onChange }) => {
   // Safety check - if question is undefined or malformed
   if (!question) {
@@ -92,10 +115,31 @@ const MultipleChoice = ({ question, value = {}, onChange }) => {
   }
   
   const handleOptionSelect = (questionId, selectedOption) => {
-    onChange({
-      ...value,
-      [questionId]: selectedOption
-    });
+    const question = questions.find(q => q.id === questionId);
+    
+    if (question.multiSelect) {
+      // For multi-select questions, maintain an array of selections
+      const currentSelections = Array.isArray(value[questionId]) ? value[questionId] : [];
+      
+      // Check if option is already selected
+      const isSelected = currentSelections.includes(selectedOption);
+      
+      // Toggle selection
+      const newSelections = isSelected
+        ? currentSelections.filter(option => option !== selectedOption)
+        : [...currentSelections, selectedOption];
+      
+      onChange({
+        ...value,
+        [questionId]: newSelections
+      });
+    } else {
+      // For single-select questions, keep the current behavior
+      onChange({
+        ...value,
+        [questionId]: selectedOption
+      });
+    }
   };
   
   const handleTextInput = (questionId, text) => {
@@ -139,14 +183,23 @@ const MultipleChoice = ({ question, value = {}, onChange }) => {
                 {Array.isArray(q.options) ? (
                   q.options.map((option, index) => (
                     <OptionButton
-                      key={index}
-                      selected={value[q.id] === option}
-                      onClick={() => handleOptionSelect(q.id, option)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {option}
-                    </OptionButton>
+                    key={index}
+                    selected={question.multiSelect 
+                      ? (Array.isArray(value[q.id]) && value[q.id].includes(option))
+                      : value[q.id] === option
+                    }
+                    onClick={() => handleOptionSelect(q.id, option)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className={question.multiSelect ? "checkbox" : "radio"}>
+                      {question.multiSelect 
+                        ? (Array.isArray(value[q.id]) && value[q.id].includes(option) ? "✓" : "")
+                        : (value[q.id] === option ? "•" : "")
+                      }
+                    </div>
+                    {option}
+                  </OptionButton>
                   ))
                 ) : (
                   <ErrorMessage>No options available for this question</ErrorMessage>
