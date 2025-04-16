@@ -4,7 +4,7 @@ const questions = [
     type: 'information',
     title: 'Survey on Brand Logo Impressions',
     shortTitle: 'Introduction',
-    description: 'In this short survey you will see examples of well‑known brands displayed in different colour styles. We would like to know your impressions. Your responses are anonymous and there are no right or wrong answers, and the survey should take about three minutes to complete.',
+    description: 'This questionnaire is part of our final English project as STEM students. We are conducting a research-based investigation to explore how color choices in brand logos impact consumer perception and purchasing decisions.\n\nYour responses will help us better understand the emotional and psychological effects of visual branding elements, and we will use the data collected to support our research on the following hypothesis: "Color schemes in brand logos significantly influence consumer trust and brand reliability perceptions."\n\nThere are no right or wrong answers — please answer honestly based on your experiences. Your responses will remain completely confidential and will only be used for academic purposes. The questionnaire will take no more than 5 minutes of your time.\n\nYour contribution is highly appreciated and will be a valuable part of our final project.',
     noResponse: true
   },
   
